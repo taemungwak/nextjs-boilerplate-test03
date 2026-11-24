@@ -1,1 +1,32 @@
+name: 기본값 테스트
 
+on:
+  workflow_dispatch:
+    inputs:
+      report_title:
+        description: '보고서 제목'
+        required: true
+        default: '주간 업계 동향 보고서'
+      file_type:
+        description: '파일 유형'
+        type: choice
+        options: [프레젠테이션, 문서, 표]
+        default: 프레젠테이션
+      count:
+        description: '분석 대상 수'
+        type: number
+        default: 4
+      include_news:
+        description: '업계 뉴스 포함'
+        type: boolean
+        default: true
+
+jobs:
+  show:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "제목: ${{ inputs.report_title }}"
+          echo "유형: ${{ inputs.file_type }}"
+          echo "개수: ${{ inputs.count }}"
+          echo "뉴스: ${{ inputs.include_news }}"
